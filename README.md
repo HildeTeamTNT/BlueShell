@@ -1,6 +1,7 @@
 BlueShell
 ===
 BlueShell是一个跨平台的持续远控工具，拿下靶机后部署BlueShell Client端，Client端会每隔固定时间向C&C Server发起反弹连接尝试，Server启动并连接Client端后，即可实现对靶机的持续控制，目前支持的主要功能有：
++ 循环持续控制
 + 跨平台，支持Linux、Windows、MacOS
 + 交互式Shell反弹（Windows只支持普通反弹Shell）
 + Socks5反弹代理

